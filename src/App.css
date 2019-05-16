@@ -7,7 +7,6 @@ body {
 .container {
   width: 1170px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .app {
@@ -19,4 +18,6 @@ h1 {
   font-size: 100px;
   font-weight: 100;
   color: rgba(175, 47, 47, 0.15);
+  margin: 65px 0 65px;
+  text-align: center;
 }

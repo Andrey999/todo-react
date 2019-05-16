@@ -1,41 +1,30 @@
 import React from 'react';
+import './TodoItem.css'
 
-const TodoItem = ({ propsValue }) => {
-    const listArr = [
-        {
-            id: 1,
-            list: "Learn React"
-        },
+const TodoItem = ({ propsValue, handleLabelDecoration, handleDeleteTask }) => {
 
-        {
-            id: 2,
-            list: "Learn Vue"
-        },
-
-        {
-            id: 3,
-            list: "Learn Angular"
-        },
-        {
-            id: 4,
-            list: "Learn Angular fsggggggggggggggggggdgdfgdfgdgfd"
-        }
-    ];
+    console.log('handleLabelDecoration:',handleLabelDecoration,
+        'handleDeleteTask:', handleDeleteTask);
 
     return (
         <div className='todoList'>
-            <ul>
-                { listArr.map(item => {
-                   return <li key={item.id}> { item.list } </li>
-                }) }
+            <ul className="todolist__item">
+                {
+                    propsValue.map(item => {
+                        return <li key={item.id}>
+                            {
+
+                            }
+
+                            <input type="checkbox" id={item.id} className="toggle"/>
+                            <label htmlFor={item.id} onClick={ handleLabelDecoration }>{item.value}</label>
+                            <button className="todolist__item-delete" onClick={ handleDeleteTask }>&times;</button>
+                        </li>
+                    })
+                }
             </ul>
         </div>
     );
-
-
-
-
-
 };
 
 export default TodoItem;
