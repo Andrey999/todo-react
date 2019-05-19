@@ -66,3 +66,7 @@
     color: rgba(175, 47, 47, 1);
 }
 
+.active {
+    text-decoration: line-through;
+    opacity: .5;
+}

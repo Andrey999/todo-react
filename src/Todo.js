@@ -7,18 +7,16 @@ class Todo extends Component {
     state = {
         task: [],
         value: '',
-        isDone: false
     };
 
     // добавляем  Task при клике на Enter
     addValueToItem = (event) => {
-        const { value, task, isDone } = this.state;
+        const { value, task } = this.state;
 
         if (value.length > 3 && event.key === 'Enter') {
             const inputValue = {
                 value: value,
                 id: +new Date(),
-                isDone: true
             };
 
             this.setState( {
@@ -30,29 +28,16 @@ class Todo extends Component {
         }
     };
 
+    handleDeleteTask = () => {
 
-    handleLabelDecoration = (event) => {
-        const { isDone } = this.state;
-
-        if(event.target) {
-            this.setState({  isDone: !this.state.isDone  });
-        }
-        console.log(isDone)
     };
 
-
-    handleDeleteTask = (event) => {
-        console.log(event.target)
-    };
-
-    //
-    handleChange = (event) => {
+    handleInputChange = (event) => {
         this.setState({  value: event.target.value  })
     };
 
     render() {
         const { value, task } = this.state;
-        console.log(task);
 
         return(
             <div className="todo">
@@ -60,14 +45,13 @@ class Todo extends Component {
                            className="todoInput"
                            placeholder="Создайте свой Task"
                            value={value}
-                           onChange={ this.handleChange }
+                           onChange={ this.handleInputChange }
                            onKeyPress={ this.addValueToItem }
                     />
 
                 <TodoItem
                     propsValue={ task }
-                    handleLabelDecoration={ this.handleLabelDecoration }
-                    handleDeleteTask={ this.handleDeleteTask }
+                    handleDeleteTask={this.handleDeleteTask}
                 />
             </div>
         )

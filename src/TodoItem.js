@@ -1,30 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './TodoItem.css'
 
-const TodoItem = ({ propsValue, handleLabelDecoration, handleDeleteTask }) => {
+class TodoItem extends Component {
+        state = {
+            isDone: false,
+            isShowTask: false
+        };
 
-    console.log('handleLabelDecoration:',handleLabelDecoration,
-        'handleDeleteTask:', handleDeleteTask);
+    handleLabelDecoration = (event) => {
+        const { isDone } = this.state;
+        if(event.currentTarget) {
+            this.setState({  isDone: !isDone });
 
-    return (
-        <div className='todoList'>
-            <ul className="todolist__item">
-                {
-                    propsValue.map(item => {
-                        return <li key={item.id}>
-                            {
+        }
+    };
 
-                            }
+    render() {
+        const { isDone, isShowTask } = this.state;
+        const { propsValue, handleDeleteTask } = this.props;
 
-                            <input type="checkbox" id={item.id} className="toggle"/>
-                            <label htmlFor={item.id} onClick={ handleLabelDecoration }>{item.value}</label>
-                            <button className="todolist__item-delete" onClick={ handleDeleteTask }>&times;</button>
-                        </li>
-                    })
-                }
-            </ul>
-        </div>
-    );
-};
+        return (
+            <div className='todoList'>
+                <ul className="todolist__item">
+                    {
+                        propsValue.map(item => {
+                            return <li key={item.id} className={isDone ? 'active' : null }>
+                                <input type="checkbox" id={item.id} value={+new Date()} className="toggle" />
+                                    <label htmlFor={item.id} onClick={this.handleLabelDecoration}>{item.value}</label>
+                                    <span className="todolist__item-delete" onClick={handleDeleteTask(item.id)} >&times;</span>
+                            </li>
+                        })
+                    }
+                </ul>
+            </div>
+        );
+    }
+}
+
+
+
+
+// const TodoItem = ({propsValue, handleLabelDecoration, handleDeleteTask, isShowTask}) => {
+//
+//     console.log('handleLabelDecoration:', handleLabelDecoration,
+//         'handleDeleteTask:', handleDeleteTask,
+//         'isShowTask: ', isShowTask);
+//
+//     return (
+//         <div className='todoList'>
+//             <ul className="todolist__item">
+//                 {
+//                     propsValue.map(item => {
+//                         return <li key={item.id}>
+//                             { isShowTask === true ? <div><input type="checkbox" id={item.id} className="toggle"/>
+//                                 <label htmlFor={item.id} onClick={handleLabelDecoration}>{item.value}</label>
+//                                 <span className="todolist__item-delete" onClick={handleDeleteTask} >&times;</span>
+//                             </div> : null
+//                             }
+//                         </li>
+//                     })
+//                 }
+//             </ul>
+//         </div>
+//     );
+// };
 
 export default TodoItem;
