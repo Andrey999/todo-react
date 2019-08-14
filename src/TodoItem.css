@@ -1,7 +1,3 @@
-.todolist {
-
-}
-
 .todolist__item {
     display: flex;
     list-style-type: none;
@@ -11,10 +7,13 @@
 }
 
 .todolist__item li {
-    width: 100%;
+    width: calc(100% - 75px);
     position: relative;
     font-size: 24px;
     border-bottom: 1px solid #ededed;
+    word-break: break-all;
+    padding: 15px 0 20px 70px;
+    line-height: 1.2;
 }
 
 .toggle {
@@ -30,14 +29,14 @@
     opacity: 0;
 }
 
-.todolist__item li label {
+/* .todolist__item li  {
     word-break: break-all;
     padding: 15px 55px 15px 75px;
     display: block;
     line-height: 1.2;
     transition: color 0.4s;
-}
-
+} */
+/* 
 .toggle + label {
     background-image: url(circle.svg);
     background-repeat: no-repeat;
@@ -46,7 +45,7 @@
 
 .toggle:checked + label {
     background-image: url(circleChecked.svg);
-}
+} */
 
 .todolist__item-delete {
     position: absolute;
@@ -65,7 +64,6 @@
 .todolist__item-delete:hover {
     color: rgba(175, 47, 47, 1);
 }
-
 .active {
     text-decoration: line-through;
     opacity: .5;

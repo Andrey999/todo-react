@@ -5,8 +5,8 @@ import './Todo.css';
 
 class Todo extends Component {
     state = {
-        task: [],
-        value: '',
+        task: [], // массив тасков
+        value: '', // значение в инпут
     };
 
     // добавляем  Task при клике на Enter
@@ -14,27 +14,28 @@ class Todo extends Component {
         const { value, task } = this.state;
 
         if (value.length > 3 && event.key === 'Enter') {
-            const inputValue = {
-                value: value,
-                id: +new Date(),
+            const inputValue = { // добавляем в обьект
+                value: value,    // значение инпута
+                id: +new Date(), // id для таски
             };
-
-            this.setState( {
+            this.setState({
                 task: task.concat(inputValue),
                 value: '',
             });
-        } else {
-            return false;
-        }
+        }  else return false;
     };
-
-    handleDeleteTask = () => {
-
-    };
-
+    // вводимые значения
     handleInputChange = (event) => {
         this.setState({  value: event.target.value  })
     };
+
+    handleDeleteItem = (index) => {
+        const { task } = this.state;
+        let newTask = task.filter(( item, i ) => i !== index)
+        this.setState({
+            task: newTask
+          });
+    }
 
     render() {
         const { value, task } = this.state;
@@ -50,13 +51,12 @@ class Todo extends Component {
                     />
 
                 <TodoItem
-                    propsValue={ task }
-                    handleDeleteTask={this.handleDeleteTask}
+                    task={ task }
+                    handleDeleteItem={ this.handleDeleteItem }
                 />
             </div>
         )
     }
-
 }
 
 export default Todo;
