@@ -38,13 +38,13 @@
 }
 
 .toggle + label {
-    background-image: url(circle.svg);
+    background-image: url(build/assets/circle.svg);
     background-repeat: no-repeat;
     background-position: 10px center;
 }
 
 .toggle:checked + label {
-    background-image: url(circleChecked.svg);
+    background-image: url(build/assets/circleChecked.svg);
 } 
 
 .todolist__item-delete {
