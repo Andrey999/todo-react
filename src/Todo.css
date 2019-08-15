@@ -25,3 +25,15 @@
 .input input[type="checkbox"] {
     opacity: 0;
 }
+
+@media screen and (max-width: 800px) {
+    .todoInput {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .todoInput {
+        padding: 15px 55px 15px 35px;
+    }
+}

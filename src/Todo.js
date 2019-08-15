@@ -16,19 +16,32 @@ class Todo extends Component {
         if (value.length > 3 && event.key === 'Enter') {
             const inputValue = { // добавляем в обьект
                 value: value,    // значение инпута
+                done: false,     // для зачеркивания текста
                 id: +new Date(), // id для таски
             };
             this.setState({
                 task: task.concat(inputValue),
-                value: '',
+                value: '', // очищаем инпут
             });
         }  else return false;
     };
+    
     // вводимые значения
     handleInputChange = (event) => {
         this.setState({  value: event.target.value  })
     };
 
+    // перечеркивание  текста
+    handleComplete = (index) => {
+        const { task } = this.state
+        this.setState({
+            task: task.map(( item, i ) => {
+              return i === index ? { ...item, done: !item.done } : item }
+            )
+          });
+    }
+   
+    //  удаление  тасков
     handleDeleteItem = (index) => {
         const { task } = this.state;
         let newTask = task.filter(( item, i ) => i !== index)
@@ -53,6 +66,7 @@ class Todo extends Component {
                 <TodoItem
                     task={ task }
                     handleDeleteItem={ this.handleDeleteItem }
+                    handleComplete={ this.handleComplete }
                 />
             </div>
         )

@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import './TodoItem.css'
 
 
-const TodoItem = ({ task, handleDeleteItem }) => (
+const TodoItem = ({ task, handleDeleteItem, handleComplete }) => (
     <div className='todoList'>
                 <ul className="todolist__item">
                     {
                         task.map((item, i) => {
-                            return <li key={item.id}  >{ item.value }
-                                    <span className="todolist__item-delete"  onClick={() => handleDeleteItem(i)} >&times;</span>
-                                {/* <input type="checkbox" id={item.id} className='toggle' /> */}
-                                    {/* <label htmlFor={item.id} className={isDone ? 'active' : null } onClick={this.handleLabelDecoration} >{item.value} */}
-                                  
-                                    {/* </label> */}
+                            return <li key={item.id}  >
+                                <input type="checkbox" className='toggle' onClick={() => handleComplete(i) } /> 
+                                    <label htmlFor={item.id} >
+                                        <span className={item.done ? 'active' : '' } >{ item.value }</span>
+                                        <span className="todolist__item-delete" onClick={() => handleDeleteItem(i)} >&times;</span>
+                                    </label>
                                     
                             </li>
                         })
