@@ -8,7 +8,7 @@ const TodoItem = ({ task, handleDeleteItem, handleComplete }) => (
                     {
                         task.map((item, i) => {
                             return <li key={item.id}  >
-                                <input type="checkbox" className='toggle' onClick={() => handleComplete(i) } /> 
+                                <input type="checkbox" className='toggle' id={item.id}  onClick={() => handleComplete(i) } /> 
                                     <label htmlFor={item.id} >
                                         <span className={item.done ? 'active' : '' } >{ item.value }</span>
                                         <span className="todolist__item-delete" onClick={() => handleDeleteItem(i)} >&times;</span>
